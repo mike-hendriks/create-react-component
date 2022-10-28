@@ -1,51 +1,99 @@
 {
-  "name": "create-react-component",
-  "displayName": "create-react-component",
-  "description": "Creates a biased component setup with React.js/Next.js, SCSS Modules, Types file and afragment",
-  "version": "0.0.1",
-  "engines": {
-    "vscode": "^1.72.0"
+  "name": "react-gensco",
+  "displayName": "React Component Generator",
+  "description": "Generates files for new React components",
+  "author": {
+    "name": "roberth"
   },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [
-    "onCommand:create-react-component.helloWorld"
-  ],
-  "main": "./dist/extension.js",
+  "version": "0.0.3",
+  "engines": {
+    "vscode": "^1.71.0"
+  },
+  "categories": ["Other"],
+  "keywords": ["react", "component", "generator", "typescript"],
+  "publisher": "roberth",
+  "bugs:url": "https://github.com/rxb3rth/react-gensco/issues",
+  "activationEvents": ["onCommand:extension.generateComponent"],
+  "main": "./out/extension.js",
+  "browser": "./out/extension.js",
+  "icon": "icon.png",
   "contributes": {
     "commands": [
       {
-        "command": "create-react-component.helloWorld",
-        "title": "Hello World"
+        "command": "extension.generateComponent",
+        "title": "Generate React component"
       }
-    ]
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "extension.generateComponent",
+          "group": "navigation@5"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "extension.generateComponent",
+          "group": "2_workspace"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "react-gensco",
+      "properties": {
+        "reactComponentGenerator.language": {
+          "type": "string",
+          "default": "ts",
+          "enum": ["ts", "js"],
+          "description": "Specifies if components should be generated in TypeScript or JavaScript."
+        },
+        "reactComponentGenerator.stylesLanguage": {
+          "type": "string",
+          "default": "scss",
+          "enum": ["scss", "css", "module.scss", "module.css"],
+          "description": "Specifies what language will be used for styles."
+        },
+        "reactComponentGenerator.useIndexFile": {
+          "type": "boolean",
+          "default": "true",
+          "description": "Specifies if the components folder should have an index file to export all of its components."
+        },
+        "reactComponentGenerator.createTestsFile": {
+          "type": "boolean",
+          "default": "false",
+          "description": "Specifies if the components should have test files."
+        }
+      }
+    }
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rxb3rth/react-gensco"
+  },
+  "homepage": "https://github.com/rxb3rth/react-gensco/blob/main/README.md",
+  "license": "MIT",
   "scripts": {
-    "vscode:prepublish": "yarn run package",
-    "compile": "webpack",
-    "watch": "webpack --watch",
-    "package": "webpack --mode production --devtool hidden-source-map",
-    "compile-tests": "tsc -p . --outDir out",
-    "watch-tests": "tsc -p . -w --outDir out",
-    "pretest": "yarn run compile-tests && yarn run compile && yarn run lint",
-    "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+    "vscode:prepublish": "npm run compile -- --minify",
+    "compile": "esbuild ./src/extension.ts --bundle --outdir=out --external:vscode --format=cjs --platform=node",
+    "watch": "npm run dev -- --sourcemap --watch",
+    "dev": "npm run compile -- --sourcemap",
+    "lint": "eslint --fix src/**.ts",
+    "format": "prettier --write \"src/**.ts\"",
+    "prepublishOnly": "npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "devDependencies": {
-    "@types/vscode": "^1.72.0",
-    "@types/glob": "^8.0.0",
-    "@types/mocha": "^10.0.0",
-    "@types/node": "16.x",
-    "@typescript-eslint/eslint-plugin": "^5.38.1",
-    "@typescript-eslint/parser": "^5.38.1",
+    "@types/node": "^18.8.2",
+    "@types/vscode": "^1.71.0",
+    "@typescript-eslint/eslint-plugin": "^5.39.0",
+    "@typescript-eslint/parser": "^5.39.0",
+    "esbuild": "^0.15.10",
     "eslint": "^8.24.0",
-    "glob": "^8.0.3",
-    "mocha": "^10.0.0",
-    "typescript": "^4.8.4",
+    "prettier": "2.7.1",
     "ts-loader": "^9.4.1",
-    "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0",
-    "@vscode/test-electron": "^2.1.5"
+    "typescript": "^4.8.4",
+    "vsce": "^2.11.0"
   }
 }

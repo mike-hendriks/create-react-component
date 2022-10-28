@@ -1,71 +1,30 @@
-# create-react-component README
+[![Marketplace](https://img.shields.io/visual-studio-marketplace/i/roberth.react-gensco)](https://marketplace.visualstudio.com/items?itemName=roberth.react-gensco)
+[![Github](https://img.shields.io/github/stars/rxb3rth/react-gensco?style=social)](https://github.com/rxb3rth/react-gensco)
+[![Twitter](https://img.shields.io/twitter/follow/rxb3rth?style=social)](https://twitter.com/rxb3rth)
+[![buymeacoffee](https://img.shields.io/badge/buymeacoffee-%24-yellow)](https://www.buymeacoffee.com/roberth.gonz)
 
-This is the README for your extension "create-react-component". After writing up a brief description, we recommend including the following sections.
+# React Component Generator
+
+Generate React components:
+
+- `src`
+  - `/components`
+    - `/NewComponent`
+      - `index.ts|.js`
+      - `NewComponent.css|.scss|.module.css|.module.scss`
+      - `NewComponent.ts|.js`
+      - `/tests`
+        - `NewComponent.test.ts|.js`
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+Right click in the file editor or on a file in the explorer and click `Generate React component` to scaffold out a new React component with all the files you need.
 
-For example if there is an image subfolder under your extension project workspace:
+## Settings
 
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+| Name | Description	| Default |
+|----- | ------------ | -------- |
+| reactComponentGenerator.language	| Specifies if components should be generated in TypeScript or JavaScript. | ts
+| reactComponentGenerator.stylesLanguage	| Specifies what language will be used for styles.	| scss
+| reactComponentGenerator.useIndexFile	| Specifies if the components folder should have an index file to export all of its components.	| true
+| reactComponentGenerator.createTestsFile	| Specifies if the components should have test files.	| false
