@@ -10,10 +10,12 @@ import {
 import {
   exportLineTemplate,
   reactFunctionComponentTemplate,
-  testFileTemplate,
+  fragmentTemplate,
   stylesTemplate,
+	typesTemplate
 } from "./templates";
-import { Language, StyleLanguage } from "./types";
+
+import * as vscode from 'vscode';
 
 function directoryToAddComponent(uri: Uri) {
   return uri.path;
@@ -22,9 +24,8 @@ function directoryToAddComponent(uri: Uri) {
 async function writeComponentsFolderIndexFile(
   directory: string,
   componentName: string,
-  language: Language
 ) {
-  const componentsFolderIndexPath = `${directory}/index.${language}`;
+  const componentsFolderIndexPath = `${directory}/index.ts`;
   const componentsFolderIndexContents = await readFile(
     componentsFolderIndexPath
   );
@@ -33,56 +34,48 @@ async function writeComponentsFolderIndexFile(
     writeFile(
       componentsFolderIndexPath,
       componentsFolderIndexContents.concat(
-        exportLineTemplate(componentName, true)
+        exportLineTemplate(componentName)
       )
     );
   } else {
     writeFile(
       componentsFolderIndexPath,
-      exportLineTemplate(componentName, true)
+      exportLineTemplate(componentName)
     );
   }
 }
 
 async function writeComponentFiles(directory: string, componentName: string) {
-  const language = getSetting<Language>("language", Language.typeScript);
-  const stylesLanguage = getSetting<StyleLanguage>(
-    "stylesLanguage",
-    StyleLanguage.scss
-  );
-  const tests = getSetting<boolean>("createTestsFile", false);
   const useIndexFile = getSetting<boolean>("useIndexFile", true);
 
-  // Write index file
-  writeFile(
-    `${directory}/${componentName}/index.${language}`,
-    exportLineTemplate(componentName)
-  );
-
   // Write component file
-  const componentPath = `${directory}/${componentName}/${componentName}.${language}x`;
+  const componentPath = `${directory}/${componentName}/${componentName}.tsx`;
   const componentPromise = writeFile(
     componentPath,
-    reactFunctionComponentTemplate(componentName, language, stylesLanguage)
+    reactFunctionComponentTemplate(componentName)
   );
 
   // Write style file
   writeFile(
-    `${directory}/${componentName}/${componentName}.${stylesLanguage}`,
+    `${directory}/${componentName}/${componentName}.module.scss`,
     stylesTemplate(componentName)
   );
 
-  // Write test file
-  if (tests) {
-    writeFile(
-      `${directory}/${componentName}/tests/${componentName}.test.${language}x`,
-      testFileTemplate(componentName)
-    );
-  }
+  // Write fragment file
+	writeFile(
+		`${directory}/${componentName}/${componentName}.fragment.ts`,
+		fragmentTemplate(componentName)
+	);
+
+  // Write types file
+	writeFile(
+		`${directory}/${componentName}/${componentName}.types.ts`,
+		typesTemplate(componentName)
+	);
 
   // Write components folder index file
-  if (useIndexFile && !directory.endsWith("app/components")) {
-    writeComponentsFolderIndexFile(directory, componentName, language);
+  if (useIndexFile && !directory.endsWith("/components")) {
+    writeComponentsFolderIndexFile(directory, componentName);
   }
 
   await componentPromise;
@@ -91,8 +84,24 @@ async function writeComponentFiles(directory: string, componentName: string) {
 
 // This is the function that gets registered to our command
 export async function generateComponent(uri?: Uri) {
+	const projectFolder = vscode.workspace.workspaceFolders[0].uri.path;
+
+	// vscode.window.showInformationMessage(projectFolder);
+	
+	let finalUrl: Uri = uri;
+
   if (!uri) {
-    return window.showErrorMessage("No file path found.");
+		if (readDirectory(`${projectFolder}/components`)) {
+			// make string uri
+			finalUrl = await Uri.parse(`${projectFolder}/components`);
+			vscode.window.showInformationMessage(finalUrl.toString());
+			// console.log('if');
+			// console.log(uri);
+			
+		} else {
+			vscode.window.showInformationMessage('else');
+			return window.showErrorMessage("No file path found.");
+		}
   }
 
   const componentName = await window.showInputBox({
@@ -103,7 +112,10 @@ export async function generateComponent(uri?: Uri) {
     return window.showErrorMessage("No component name passed");
   }
 
-  const directory = directoryToAddComponent(uri);
+	const directory = directoryToAddComponent(finalUrl);
+	
+	// vscode.window.showInformationMessage(directory);
+
 
   writeComponentFiles(directory, componentName);
 }

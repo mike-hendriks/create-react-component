@@ -1,4 +1,5 @@
 export { exportLineTemplate } from "./exportLineTemplate";
 export { reactFunctionComponentTemplate } from "./reactFunctionComponentTemplate";
-export { testFileTemplate } from "./testFileTemplate";
+export { fragmentTemplate } from "./fragmentTemplate";
 export { stylesTemplate } from "./stylesTemplate";
+export { typesTemplate } from "./typesTemplate";

@@ -1,8 +1,10 @@
 export function exportLineTemplate(
   componentName: string,
-  componentsFolderIndex?: boolean
 ) {
-  return componentsFolderIndex
-    ? `export {${componentName}} from './${componentName}';\n`
-    : `export * from './${componentName}';\n`;
+	return `
+// ==== ${componentName} ====
+export { default as ${componentName} } from './${componentName}/${componentName}';
+export { ${componentName}Fragment } from './${componentName}/${componentName}.fragment';
+export type { ${componentName}Type } from './${componentName}/${componentName}.types';
+`;
 }

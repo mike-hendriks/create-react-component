@@ -24,7 +24,3 @@ Right click in the file editor or on a file in the explorer and click `Generate 
 
 | Name | Description	| Default |
 |----- | ------------ | -------- |
-| reactComponentGenerator.language	| Specifies if components should be generated in TypeScript or JavaScript. | ts
-| reactComponentGenerator.stylesLanguage	| Specifies what language will be used for styles.	| scss
-| reactComponentGenerator.useIndexFile	| Specifies if the components folder should have an index file to export all of its components.	| true
-| reactComponentGenerator.createTestsFile	| Specifies if the components should have test files.	| false
