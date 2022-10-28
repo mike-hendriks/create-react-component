@@ -1,18 +1,19 @@
 {
-  "name": "react-gensco",
-  "displayName": "React Component Generator",
-  "description": "Generates files for new React components",
+  "name": "create-react-component-mh",
+  "displayName": "Create react component",
+  "description": "Generates files for new React component, including scss module, fragments and types",
   "author": {
-    "name": "roberth"
+    "name": "mike-hendriks (https://github.com/mike-hendriks/)"
   },
-  "version": "0.0.3",
+	"contributors": ["rxb3rth"],
+  "version": "0.0.1",
   "engines": {
     "vscode": "^1.71.0"
   },
   "categories": ["Other"],
-  "keywords": ["react", "component", "generator", "typescript"],
-  "publisher": "roberth",
-  "bugs:url": "https://github.com/rxb3rth/react-gensco/issues",
+  "keywords": ["react", "nextjs", "component", "generator", "typescript"],
+  "publisher": "mike-hendriks",
+  "bugs:url": "https://github.com/mike-hendriks/create-react-component/issues",
   "activationEvents": ["onCommand:extension.generateComponent"],
   "main": "./out/extension.js",
   "browser": "./out/extension.js",
@@ -48,9 +49,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rxb3rth/react-gensco"
+    "url": "https://github.com/mike-hendriks/create-react-component"
   },
-  "homepage": "https://github.com/rxb3rth/react-gensco/blob/main/README.md",
+  "homepage": "https://github.com/mike-hendriks/create-react-component/blob/main/README.md",
   "license": "MIT",
   "scripts": {
     "vscode:prepublish": "npm run compile -- --minify",

@@ -1,26 +1,19 @@
-[![Marketplace](https://img.shields.io/visual-studio-marketplace/i/roberth.react-gensco)](https://marketplace.visualstudio.com/items?itemName=roberth.react-gensco)
-[![Github](https://img.shields.io/github/stars/rxb3rth/react-gensco?style=social)](https://github.com/rxb3rth/react-gensco)
-[![Twitter](https://img.shields.io/twitter/follow/rxb3rth?style=social)](https://twitter.com/rxb3rth)
-[![buymeacoffee](https://img.shields.io/badge/buymeacoffee-%24-yellow)](https://www.buymeacoffee.com/roberth.gonz)
+[![Github](https://img.shields.io/github/stars/mike-hendriks/create-react-component?style=social)](https://github.com/mike-hendriks/create-react-component)
 
-# React Component Generator
+# Create React component
 
 Generate React components:
 
 - `src`
   - `/components`
-    - `/NewComponent`
-      - `index.ts|.js`
-      - `NewComponent.css|.scss|.module.css|.module.scss`
-      - `NewComponent.ts|.js`
-      - `/tests`
-        - `NewComponent.test.ts|.js`
+    - `/index.ts` (All all files to main components index file)
+    - `/ComponentName`
+      - `ComponentName.module.scss`
+      - `ComponentName.tsx`
+      - `ComponentName.types.ts`
+      - `ComponentName.fragment.ts`
 
 ## Features
 
-Right click in the file editor or on a file in the explorer and click `Generate React component` to scaffold out a new React component with all the files you need.
-
-## Settings
-
-| Name | Description	| Default |
-|----- | ------------ | -------- |
+Right click in the file editor or on a file in the explorer and click `Create React component` to create a new React component with all the files mentioned above.
+OR press F3 to create a component in your `components` folder with your given component name!
