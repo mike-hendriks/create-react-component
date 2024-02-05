@@ -1,10 +1,7 @@
-export function exportLineTemplate(
-  componentName: string,
-) {
-	return `
+export function exportLineTemplate(componentName: string) {
+  return `
 // ==== ${componentName} ====
-export { default as ${componentName} } from './${componentName}/${componentName}';
-export { ${componentName}Fragment } from './${componentName}/${componentName}.fragment';
+export { ${componentName} } from './${componentName}/${componentName}';
 export type { ${componentName}Type } from './${componentName}/${componentName}.types';
 `;
 }

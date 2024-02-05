@@ -3,3 +3,8 @@ dist
 node_modules
 .vscode-test/
 *.vsix
+
+.yarn
+.yarn/*
+.yarn/install-state.gz
+.DS_Store

@@ -5,16 +5,28 @@
   "author": {
     "name": "mike-hendriks (https://github.com/mike-hendriks/)"
   },
-	"contributors": ["rxb3rth"],
+  "contributors": [
+    "rxb3rth"
+  ],
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.71.0"
   },
-  "categories": ["Other"],
-  "keywords": ["react", "nextjs", "component", "generator", "typescript"],
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "react",
+    "nextjs",
+    "component",
+    "generator",
+    "typescript"
+  ],
   "publisher": "mike-hendriks",
   "bugs:url": "https://github.com/mike-hendriks/create-react-component/issues",
-  "activationEvents": ["onCommand:extension.generateComponent"],
+  "activationEvents": [
+    "onCommand:extension.generateComponent"
+  ],
   "main": "./out/extension.js",
   "browser": "./out/extension.js",
   "icon": "icon.png",
@@ -39,13 +51,13 @@
         }
       ]
     },
-		"keybindings": [
-			{
-					"command": "extension.generateComponent",
-					"key": "f3",
-					"mac": "f3"
-			}
-	]
+    "keybindings": [
+      {
+        "command": "extension.generateComponent",
+        "key": "f3",
+        "mac": "f3"
+      }
+    ]
   },
   "repository": {
     "type": "git",
