@@ -7,6 +7,7 @@ export type ${componentName}Type = {
 		_uid: string;
 		_editable: string;
 	};
+};
 
 export default ${componentName}Type;
 `.trimStart();
